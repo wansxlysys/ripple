@@ -213,7 +213,7 @@ class Connection
                 } else {
                     $contentLength = $this->headers['CONTENT-LENGTH'] ?? null;
                     if ($contentLength !== null) {
-						$this->contentLength = intval($contentLength);
+                        $this->contentLength = intval($contentLength);
                         $buffer              = substr($buffer, $headerEnd + 4);
                         $this->output($buffer);
                         $this->bodyLength += strlen($buffer);
