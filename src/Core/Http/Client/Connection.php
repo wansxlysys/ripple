@@ -211,9 +211,10 @@ class Connection
                     $this->step   = 3;
                     $this->buffer = substr($buffer, $headerEnd + 4);
                 } else {
-                    $contentLength = $this->headers['CONTENT-LENGTH'] ?? $this->headers['CONTENT-LENGTH'] ?? null;
-                    if ($this->contentLength = intval($contentLength)) {
-                        $buffer = substr($buffer, $headerEnd + 4);
+                    $contentLength = $this->headers['CONTENT-LENGTH'] ?? null;
+                    if ($contentLength !== null) {
+						$this->contentLength = intval($contentLength);
+                        $buffer              = substr($buffer, $headerEnd + 4);
                         $this->output($buffer);
                         $this->bodyLength += strlen($buffer);
                         if ($this->bodyLength === $this->contentLength) {
